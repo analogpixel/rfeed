@@ -61,8 +61,7 @@ class Serializable:
                         if cdata_begin != -1:
                                 cdata_end = string[cdata_begin:].find("]]>")
                                 if cdata_end != -1:
-                                        return {"begin": cdata_begin,
-                                                        "end": cdata_begin + cdata_end + 3}
+                                        return {"begin": cdata_begin, "end": cdata_begin + cdata_end + 3}
                                 else:
                                         return None
                         else:
@@ -609,7 +608,7 @@ class Item(Host):
                 self._write_element("title", self.title)
                 self._write_element("link", self.link)
                 self._write_element("description", self.description)
-                self._write_element("content", self.content)
+                self._write_element("content:encoded", f"<![CDATA[{self.content}]]>")
                 self._write_element("author", self.author)
                 self._write_element("dc:creator", self.creator)
                 self._write_element("comments", self.comments)
